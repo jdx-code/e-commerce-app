@@ -1,9 +1,13 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { addToCart } from '../redux/action'
+import { useDispatch } from 'react-redux'
 
 const ProductDescription = () => {
-  
+
+  const dispatch = useDispatch()
+
   const { productID } = useParams()
   const [productDesc, setProductDesc] = useState([])
 
@@ -65,7 +69,8 @@ const ProductDescription = () => {
             </div>
 
             <button
-            className='bg-blue-500'
+              className='bg-blue-500'
+              onClick={() => dispatch(addToCart(productDesc))}
             >
               Add to cart
             </button>
