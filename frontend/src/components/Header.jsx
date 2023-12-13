@@ -1,15 +1,26 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 const Header = () => {
+
+  const result = useSelector ((state) => state.cartData)
+  console.warn("redux data in header", result)
+
   return (
     <div className='flex justify-between items-center'>
-      <div>TuteDude E-Commerce App</div>
+      <div>
+        <NavLink
+          to="/"
+        >
+          My E-Commerce App
+        </NavLink> 
+      </div>
       <div className=''>
         <button className='bg-orange-300 p-2 mr-2 rounded-md'>
           Cart
           <span>
-            (0)
+            {result.length}
           </span>  
         </button>
         <NavLink

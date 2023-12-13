@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import { useAuthContext } from '../context/Auth/AuthProvider';
+import { useDispatch } from 'react-redux'
+import { setLoginToken } from '../redux/authAction'
 
 const Login = () => {
+
+    const dispatch = useDispatch()    
 
     const navigate = useNavigate();
 
@@ -29,10 +32,12 @@ const Login = () => {
           .post('http://localhost:5000/api/users/login-customer', formData)
           .then((response) => {
             if (response && response.data) {
-              // Call the login function to set user data and token         
-              
-              // login(response.data.token);
+
+              // Call the login function to set user data and token                                     
+              dispatch(setLoginToken(response.data.token))
+
               console.log('Login successfull..')
+              
     
               axios
                 .get('http://localhost:5000/api/users/customer-protected', {
