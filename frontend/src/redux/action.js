@@ -1,8 +1,8 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART } from './constant'
+import { ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART, PROCEED_TO_PAYMENT } from './constant'
 
 export const addToCart = (data) => {
 
-    // console.warn("action", data)
+    console.warn("add to cart action", data)
 
     return {
         type: ADD_TO_CART,
@@ -28,6 +28,17 @@ export const emptyCart = () => {
 
     return {
         type: EMPTY_CART,        
+    }       
+    
+}
+
+export const proceedToPayment = (totalAmount, itemsArray) => {
+
+    console.warn("proceedToPayment action", totalAmount, itemsArray)
+
+    return {
+        type: PROCEED_TO_PAYMENT,
+        payload: { totalAmount, itemsArray }
     }       
     
 }

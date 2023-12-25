@@ -34,7 +34,7 @@ const Login = () => {
             if (response && response.data) {
 
               // Call the login function to set user data and token                                     
-              dispatch(setLoginToken(response.data.token))
+              dispatch(setLoginToken(response.data))
 
               console.log('Login successfull..')
               
