@@ -1,11 +1,28 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { logout } from '../redux/authAction'
+// import jwt_decode from 'jwt-decode'
 
 const Header = () => {
 
+  const loginData = useSelector ((state) => state.authData)  
+  console.log(loginData)  
+  // const loginDataWithToken = loginData
+  // const token = loginData[0].token
+  // const decodedToken = decode(token);
+  // console.log(jwt_decode(loginData[0].token))
+  // console.log(`the loginData is ${loginData}`)
+  // console.log(`the login info is ${loginDataWithToken}`)
+  // console.log(`the login token is ${token}`)
+  // console.log(`the decoded token data is ${decodedToken}`)
+
+  
   const result = useSelector ((state) => state.cartData)
+
   console.warn("redux data in header", result)
+
+  const dispatch = useDispatch()
 
   return (
     <div className='flex justify-between items-center'>
@@ -17,26 +34,49 @@ const Header = () => {
         </NavLink> 
       </div>
       <div className=''>
-        <button className='bg-orange-300 p-2 mr-2 rounded-md'>
-          Cart
-          <span>
-            {result.length}
-          </span>  
-        </button>
-        <NavLink
-          to="/login"
+      <NavLink
+          to="/cart"
         >
-          <button className='bg-green-400 p-2 mr-2 rounded-md'>
-            Login  
+          <button className='bg-orange-300 p-2 mr-2 rounded-md'>
+            Cart
+            <span>
+              {result.length}
+            </span>  
           </button>
-        </NavLink>
-        <NavLink
-          to="/sign-up"
-        >
-          <button className='bg-green-300 p-2 rounded-md'>
-            Sign-up
-          </button>
-        </NavLink>        
+      </NavLink>         
+
+        {loginData.length > 0 ? (
+
+            <div>
+              <p>Welcome {loginData[0].username}</p>
+              <button 
+                className='bg-green-400 p-2 mr-2 rounded-md'
+                onClick={()=>dispatch(logout(loginData))}
+              >
+                Logout  
+              </button>
+            </div>
+            
+        ) : (
+            <div>
+              <NavLink
+                to="/login"
+              >
+                <button className='bg-green-400 p-2 mr-2 rounded-md'>
+                  Login  
+                </button>
+              </NavLink>
+              <NavLink
+                to="/sign-up"
+              >
+                <button className='bg-green-300 p-2 rounded-md'>
+                  Sign-up
+                </button>
+              </NavLink>
+            </div>
+        )}
+
+                
       </div>
     </div>    
   )

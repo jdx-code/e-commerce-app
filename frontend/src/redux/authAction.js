@@ -2,7 +2,7 @@ import { SET_LOGIN, LOGOUT } from './constant'
 
 export const setLoginToken = (data) => {
 
-    console.warn("action --> the login token is = ", data)
+    console.warn("action --> current login user data is = ", data)
 
     return {
         type: SET_LOGIN,
