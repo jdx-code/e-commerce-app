@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import axios from 'axios';
 
 const Payment = () => {
+
+  const loginData = useSelector ((state) => state.authData) 
+
+  const user_id = loginData[0].user_id
 
   const [formData, setFormData] = useState({
     paymentType: '',    
@@ -25,9 +30,15 @@ const Payment = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+    const requestData = {
+      formData,
+      cart,           
+      user_id 
+    };
 
     axios
-    .post('http://localhost:5000/api/users/payment', formData, cart)
+    .patch('http://localhost:5000/api/orders/payments', requestData)
     .then((response) => {
         if(response && response.data) {
             console.log(`Payment successfull !! Order confirmed.`)

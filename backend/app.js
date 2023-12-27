@@ -2,6 +2,7 @@ const express = require('express')
 const connectDB = require('./config/database')
 const userRoutes = require('./routes/users')
 const productRoutes = require('./routes/products') 
+const orderRoutes = require('./routes/orders')
 const passport = require('passport')
 
 const app = express()
@@ -23,6 +24,7 @@ require('./middleware/passport')(passport)
 // Routes
 app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
+app.use('/api/orders', orderRoutes)
 
 const PORT = process.env.PORT || 5000
 
