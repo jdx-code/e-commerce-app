@@ -29,7 +29,7 @@ const Main = () => {
   
 
   return (    
-    <div className='bg-red-500'>
+    <div className='bg-red-100'>
       <ProductCard products={products}/>
     </div>
   )

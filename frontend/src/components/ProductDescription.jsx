@@ -40,7 +40,7 @@ const ProductDescription = () => {
               className='w-[50%] h-[70%]'
             />
           </div> 
-          <div className='w-[100%] sm:my-12 sm:w-[50%] border-2 border-red-800'>            
+          <div className='w-[100%] px-4 sm:my-12 sm:w-[50%] border-2 border-red-800'>            
             <p>{productDesc[0].productName}</p>
             <p className='w-[80%]'>{productDesc[0].productDescription}</p>
             <p>Rs. {productDesc[0].productPrice}</p>
@@ -69,7 +69,7 @@ const ProductDescription = () => {
             </div>
 
             <button
-              className='bg-blue-500'
+              className='bg-blue-500 p-2 my-2 border-4 border-blue-200 hover:bg-blue-400'
               onClick={() => dispatch(addToCart(productDesc))}
             >
               Add to cart

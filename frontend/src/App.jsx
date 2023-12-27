@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <div className='bg-yellow-400'>
+      <div className='bg-blue-500'>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />          

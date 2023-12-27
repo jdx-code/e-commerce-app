@@ -7,7 +7,7 @@ const ProductCard = (props) => {
         <>   
             <div className="container">
                 <div className="row">
-                    <div className='flex flex-col px-[77px] sm:px-[25px] py-[60px] sm:flex-row sm:justify-center items-center'>
+                    <div className='flex flex-col px-[20px] sm:px-[25px] py-[60px] sm:flex-row sm:justify-center items-center'>
 
                         {props.products.map((item) => (               
                             
