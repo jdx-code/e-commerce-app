@@ -17,8 +17,7 @@ module.exports = {
             user.cart = [...user.cart, ...cart];
             
             await user.save();
-
-            // Send a response back to the client
+            
             res.status(200).json({ message: 'Payment successful. Cart updated.' });
             
             

@@ -24,9 +24,7 @@ const Login = () => {
             [event.target.name]: event.target.value,
         }));        
     };
-
-    // const { login } = useAuthContext(); // Get the login function from the auth context
-
+    
     const handleSubmit = (event) => {
         event.preventDefault();
     
@@ -43,28 +41,25 @@ const Login = () => {
               axios
                 .get('http://localhost:5000/api/users/customer-protected', {
                   headers: {
-                    Authorization: response.data.token, // Include the token from the auth context
+                    Authorization: response.data.token, 
                   },
                 })
                 .then((res) => {
-                  // Check if the response indicates success (e.g., res.status === 200)
-                  if (res.status === 200) {
-                    // Navigate to the server-side route if successful
+                  
+                  if (res.status === 200) {                    
                     navigate('/');
                     toast('Logged in successfully!', {
                       position: toast.POSITION.TOP_CENTER,
                     });
-                  } else {
-                    // Handle other cases or errors as needed
-                    console.error('Server response indicates an error:', res);
+                  } else {                    
+                    console.error('Server error:', res);
                   }
                 })
-                .catch((error) => {
-                  // Handle any errors from the GET request
+                .catch((error) => {                  
                   console.error('Error fetching data:', error);
                 });
     
-              // Clear form inputs on successful submission
+              // Clear form inputs after successful submission
               setFormData({
                 username: '',
                 password: '',
@@ -79,13 +74,11 @@ const Login = () => {
           })
           .catch((error) => {
             if (error && error.response && error.response.data && error.response.data.message) {
-              console.error(`Error: ${error.response.data.message}`);
-              // Display the error message from the server
+              console.error(`Error: ${error.response.data.message}`);              
               toast.error(error.response.data.message, {
                 position: toast.POSITION.TOP_CENTER,
               });
-            } else {
-              // Handle unexpected error format
+            } else {              
               console.error(`Unexpected error format: ${error}`);
               toast.error('An unexpected error occurred.', {
                 position: toast.POSITION.TOP_CENTER,

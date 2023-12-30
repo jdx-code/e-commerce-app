@@ -21,8 +21,6 @@ const SignUp = () => {
         }));        
     };
 
-    // const { login } = useAuthContext(); // Get the login function from the auth context
-
     const handleSubmit = (event) => {
         event.preventDefault();
     
@@ -30,41 +28,35 @@ const SignUp = () => {
           .post('http://localhost:5000/api/users/register-customer', formData)
           .then((response) => {
             if (response && response.data) {
-              // Call the register function to set user data and token         
-              
-              // login(response.data.token);
+      
               console.log(`Registered successfully with.. ${response.data.token}`)
 
-              navigate('/');
-    
-              // Clear form inputs on successful submission
+              navigate('/');    
+              
               setFormData({
                 name: '',
                 email: '',
                 username: '',
                 password: '',
               });
-            } else {
-              // Handle unexpected response format
+            } else {              
               console.error(`Unexpected response format: ${response}`);
-            //   toast.error('An unexpected error occurred.', {
-            //     position: toast.POSITION.TOP_CENTER,
-            //   });
+              toast.error('An unexpected error occurred.', {
+                position: toast.POSITION.TOP_CENTER,
+              });
             }
           })
           .catch((error) => {
             if (error && error.response && error.response.data && error.response.data.message) {
-              console.error(`Error: ${error.response.data.message}`);
-              // Display the error message from the server
-            //   toast.error(error.response.data.message, {
-            //     position: toast.POSITION.TOP_CENTER,
-            //   });
-            } else {
-              // Handle unexpected error format
+              console.error(`Error: ${error.response.data.message}`);              
+              toast.error(error.response.data.message, {
+                position: toast.POSITION.TOP_CENTER,
+              });
+            } else {              
               console.error(`Unexpected error format: ${error}`);
-            //   toast.error('An unexpected error occurred.', {
-            //     position: toast.POSITION.TOP_CENTER,
-            //   });
+              toast.error('An unexpected error occurred.', {
+                position: toast.POSITION.TOP_CENTER,
+              });
             }
           });
       };
@@ -108,7 +100,8 @@ const SignUp = () => {
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">                  
                   <input
                     type="email"
-                    name="email"n                id="email"
+                    name="email"
+                    id="email"
                     autoComplete="email"
                     className="form-control text block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"                    
                     placeholder="Enter your email here.."
