@@ -14,7 +14,7 @@ module.exports = {
                 return res.status(404).json({ error: 'User not found' });
             }
 
-            user.cart = cart;
+            user.cart = [...user.cart, ...cart];
             
             await user.save();
 

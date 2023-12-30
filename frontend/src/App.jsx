@@ -12,8 +12,8 @@ function App() {
 
   return (
     <>
-      <div className='bg-yellow-400'>
-        <Header />
+      <div>
+        <Header/>
         <Routes>
           <Route path="/" element={<Home />} />          
 

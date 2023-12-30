@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { logout } from '../redux/authAction'
 // import jwt_decode from 'jwt-decode'
+import { FaCartPlus } from "react-icons/fa6";
 
 const Header = () => {
 
@@ -25,7 +26,7 @@ const Header = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className='flex justify-between items-center'>
+    <div className='flex justify-between items-center py-4 bg-blue-500'>
       <div>
         <NavLink
           to="/"
@@ -37,12 +38,13 @@ const Header = () => {
       <NavLink
           to="/cart"
         >
-          <button className='bg-orange-300 p-2 mr-2 rounded-md'>
-            Cart
+          <div className='flex items-center'>
+            <FaCartPlus style={{ color: 'white', fontSize: '1.5em' }}/> 
             <span>
-              {result.length}
-            </span>  
-          </button>
+              &nbsp; {result.length}
+            </span>
+          </div>
+          
       </NavLink>         
 
         {loginData.length > 0 ? (

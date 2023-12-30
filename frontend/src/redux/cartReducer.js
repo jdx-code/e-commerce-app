@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART, PROCEED_TO_PAYMENT } from './constant'
+import { ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART } from './constant'
  
 export const cartData = (data = [], action) => {
 
@@ -23,14 +23,6 @@ export const cartData = (data = [], action) => {
             console.warn('EMPTY_CART action type called', action)
             data = []
             return [...data]
-        
-        case PROCEED_TO_PAYMENT:
-            console.warn('PROCEED_TO_PAYMENT action type called', action)            
-            return {
-                data: [...data],
-                totalAmount: action.payload.totalAmount,
-                itemsArray: action.payload.itemsArray,
-            };
         
         default:
             return data

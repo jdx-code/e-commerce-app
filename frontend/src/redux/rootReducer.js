@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import { cartData } from './reducer'
+import { cartData } from './cartReducer'
 import { authData } from './authReducer'
+import { orderData } from './orderReducer'
 
 export default combineReducers({
     cartData: cartData,
-    authData: authData
+    authData: authData,
+    orderData: orderData,
 })
