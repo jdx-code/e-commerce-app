@@ -21,8 +21,7 @@ const ProductCard = (props) => {
                                             <p className="">{item.productPrice}</p>
                                         </div>
                                     </Link>
-                                </div>                                                         
-                            
+                                </div>    
                             ))
                         }
                         
