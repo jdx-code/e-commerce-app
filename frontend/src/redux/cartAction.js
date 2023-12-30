@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART, PROCEED_TO_PAYMENT } from './constant'
+import { ADD_TO_CART, REMOVE_FROM_CART, EMPTY_CART } from './constant'
 
 export const addToCart = (data) => {
 
@@ -28,17 +28,6 @@ export const emptyCart = () => {
 
     return {
         type: EMPTY_CART,        
-    }       
-    
-}
-
-export const proceedToPayment = (totalAmount, itemsArray) => {
-
-    console.warn("proceedToPayment action", totalAmount, itemsArray)
-
-    return {
-        type: PROCEED_TO_PAYMENT,
-        payload: { totalAmount, itemsArray }
     }       
     
 }

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { setLoginToken } from '../redux/authAction'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
@@ -37,8 +39,7 @@ const Login = () => {
               dispatch(setLoginToken(response.data))
 
               console.log('Login successfull..')
-              
-    
+                  
               axios
                 .get('http://localhost:5000/api/users/customer-protected', {
                   headers: {
@@ -49,10 +50,10 @@ const Login = () => {
                   // Check if the response indicates success (e.g., res.status === 200)
                   if (res.status === 200) {
                     // Navigate to the server-side route if successful
-                    navigate('/customer-protected');
-                    // toast('Teacher logged in successfully!', {
-                    //   position: toast.POSITION.TOP_CENTER,
-                    // });
+                    navigate('/');
+                    toast('Logged in successfully!', {
+                      position: toast.POSITION.TOP_CENTER,
+                    });
                   } else {
                     // Handle other cases or errors as needed
                     console.error('Server response indicates an error:', res);
@@ -71,24 +72,24 @@ const Login = () => {
             } else {
               // Handle unexpected response format
               console.error(`Unexpected response format: ${response}`);
-            //   toast.error('An unexpected error occurred.', {
-            //     position: toast.POSITION.TOP_CENTER,
-            //   });
+              toast.error('An unexpected error occurred.', {
+                position: toast.POSITION.TOP_CENTER,
+              });
             }
           })
           .catch((error) => {
             if (error && error.response && error.response.data && error.response.data.message) {
               console.error(`Error: ${error.response.data.message}`);
               // Display the error message from the server
-            //   toast.error(error.response.data.message, {
-            //     position: toast.POSITION.TOP_CENTER,
-            //   });
+              toast.error(error.response.data.message, {
+                position: toast.POSITION.TOP_CENTER,
+              });
             } else {
               // Handle unexpected error format
               console.error(`Unexpected error format: ${error}`);
-            //   toast.error('An unexpected error occurred.', {
-            //     position: toast.POSITION.TOP_CENTER,
-            //   });
+              toast.error('An unexpected error occurred.', {
+                position: toast.POSITION.TOP_CENTER,
+              });
             }
           });
       };
@@ -156,6 +157,8 @@ const Login = () => {
 
         </div>
         </form>
+
+        <ToastContainer />
     </div>    
   )
 }

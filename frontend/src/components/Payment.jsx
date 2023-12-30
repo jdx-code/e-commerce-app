@@ -12,15 +12,13 @@ const Payment = () => {
     paymentType: '',    
   });
 
-  const { totalAmount, itemsArray } = useSelector((state) => state.cartData);
+  const { totalAmount, itemsArray } = useSelector((state) => state.orderData);
 
   console.log(`Total Amount: ${totalAmount}`);
   console.log(`Items Array: ${itemsArray}`);
-
-  const cart = itemsArray.map(item => ({ id: item._id, quantity: item.quantity }));
   
-  console.log(cart)
-
+  const cart = itemsArray.map(item => ({ productId: item._id, quantity: item.quantity }));
+  
   const handlePaymentTypeChange = (event) => {
     setFormData({
       ...formData,
@@ -50,6 +48,7 @@ const Payment = () => {
   return (
     <div>
         <p>Payment Options</p>
+        
         <form onSubmit={handleSubmit}>
         <div className='p-2'>
           <input

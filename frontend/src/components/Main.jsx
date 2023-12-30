@@ -25,9 +25,6 @@ const Main = () => {
     
   }, [])
 
-
-  
-
   return (    
     <div className='bg-red-100'>
       <ProductCard products={products}/>

@@ -26,7 +26,7 @@ const Header = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className='flex justify-between items-center py-4'>
+    <div className='flex justify-between items-center py-4 bg-blue-500'>
       <div>
         <NavLink
           to="/"

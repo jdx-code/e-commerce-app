@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { proceedToPayment } from '../redux/action';
+import { proceedToPayment } from '../redux/orderAction';
 
 const Cart = () => {
   
@@ -67,7 +67,7 @@ const Cart = () => {
       >
         <button 
           className='bg-green-400 p-2 rounded-md border-2 border-green-700'
-          onClick={()=>dispatch(proceedToPayment(totalAmount, uniqueItemsArray))}
+          onClick={()=>dispatch(proceedToPayment(totalAmount, uniqueItemsArray))}          
         >
           Proceed to payment
         </button>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import { useAuthContext } from '../context/Auth/AuthProvider';
 
 const SignUp = () => {
 
@@ -34,34 +33,14 @@ const SignUp = () => {
               // Call the register function to set user data and token         
               
               // login(response.data.token);
-              console.log('Registered successfully..')
-    
-              axios
-                .get('http://localhost:5000/api/users/customer-protected', {
-                  headers: {
-                    Authorization: response.data.token, // Include the token from the auth context
-                  },
-                })
-                .then((res) => {
-                  // Check if the response indicates success (e.g., res.status === 200)
-                  if (res.status === 200) {
-                    // Navigate to the server-side route if successful
-                    navigate('/customer-protected');
-                    // toast('Teacher logged in successfully!', {
-                    //   position: toast.POSITION.TOP_CENTER,
-                    // });
-                  } else {
-                    // Handle other cases or errors as needed
-                    console.error('Server response indicates an error:', res);
-                  }
-                })
-                .catch((error) => {
-                  // Handle any errors from the GET request
-                  console.error('Error fetching data:', error);
-                });
+              console.log(`Registered successfully with.. ${response.data.token}`)
+
+              navigate('/');
     
               // Clear form inputs on successful submission
               setFormData({
+                name: '',
+                email: '',
                 username: '',
                 password: '',
               });
@@ -93,52 +72,108 @@ const SignUp = () => {
   return (
     <div>
         <form onSubmit={handleSubmit}>
-            <div className="form-group">
-            <label htmlFor="postTitle">Name:</label>
-            <input
-                type="text"
-                className="form-control"
-                placeholder="Name"
-                onChange={handleChange}
-                name="name"
-                value={formData.name}
-            />
+
+        <div className="space-y-12">
+        <div className="border-4 border-gray-900/10 pb-12">
+          <h2 className="text-base font-semibold leading-7 text-gray-900">Customer Sign Up</h2>
+          
+          <div className="mt-10 max-w-[85%] sm:max-w-[50%] lg:max-w-[35%] mx-auto grid grid-cols-1 gap-x-6 gap-y-8 border-4 border-yellow-400 p-4">
+
+          <div className="sm:col-span-4">
+              <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+                Name
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">                  
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    autoComplete="name"
+                    className="form-control text block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"                    
+                    placeholder="Enter your name here.."
+                    onChange={handleChange}                    
+                    value={formData.name}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="form-group">
-            <label htmlFor="postTitle">Email:</label>
-            <input
-                type="email"
-                className="form-control"
-                placeholder="Email"
-                onChange={handleChange}
-                name="email"
-                value={formData.email}
-            />
+
+
+            <div className="sm:col-span-4">
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                Email
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">                  
+                  <input
+                    type="email"
+                    name="email"n                id="email"
+                    autoComplete="email"
+                    className="form-control text block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"                    
+                    placeholder="Enter your email here.."
+                    onChange={handleChange}                    
+                    value={formData.email}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="form-group">
-            <label htmlFor="postTitle">Username:</label>
-            <input
-                type="text"
-                className="form-control"
-                placeholder="Username"
-                onChange={handleChange}
-                name="username"
-                value={formData.username}
-            />
+
+
+            <div className="sm:col-span-4">
+              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                Username
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">                  
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    autoComplete="username"
+                    className="form-control text block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"                    
+                    placeholder="Enter your username here.."
+                    onChange={handleChange}                    
+                    value={formData.username}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="form-group">
-            <label htmlFor="postTitle">Password:</label>
-            <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                onChange={handleChange}
-                name="password"
-                value={formData.password}
-            />
-            </div>
-            <button className="btn btn-primary">Submit</button>
+
+            <div className="sm:col-span-4">
+              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                Password
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">                  
+                  <input                
+                    className="form-control block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    type="password"                    
+                    placeholder="Enter your password here.."
+                    onChange={handleChange}
+                    name="password"
+                    value={formData.password}
+                  />
+                </div>
+              </div>
+            </div> 
+
+            <div className="mt-6 flex items-center gap-x-6 sm:col-span-4">              
+              <button
+                type="submit"
+                className="w-full rounded-md bg-indigo-100 px-3 py-2 text-sm font-semibold text-blue-700 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Sign Up
+              </button>
+            </div>           
+                       
+        </div>
+
+        </div>
+
+        </div>
         </form>
+
     </div>    
   )
 }

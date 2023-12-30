@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { addToCart } from '../redux/action'
+import { addToCart } from '../redux/cartAction'
 import { useDispatch } from 'react-redux'
 
 const ProductDescription = () => {
@@ -27,20 +27,19 @@ const ProductDescription = () => {
   }, [productDesc])
 
   
- 
   return (
     <div>
-      <p>All about product desciption..</p>
+      
       {productDesc && productDesc.length > 0 ? (
-        <div className='w-[100%] border-2 border-gray-800 sm:px-20 sm:flex sm:justify-around'>         
-          <div className='w-[100%] px-4 sm:w-[50%] border-2 border-blue-800'>
+        <div className='w-[100%] border-4 border-gray-800 sm:px-20 sm:flex sm:justify-around sm:items-center'>         
+          <div className='w-[100%] px-4 sm:w-[50%]'>
             <img 
               src={productDesc[0].productImage} 
               alt={productDesc[0].productName} 
               className='w-[50%] h-[70%]'
             />
           </div> 
-          <div className='w-[100%] px-4 sm:my-12 sm:w-[50%] border-2 border-red-800'>            
+          <div className='w-[100%] px-4 sm:my-12 sm:w-[50%]'>            
             <p>{productDesc[0].productName}</p>
             <p className='w-[80%]'>{productDesc[0].productDescription}</p>
             <p>Rs. {productDesc[0].productPrice}</p>
