@@ -31,7 +31,7 @@ const ProductDescription = () => {
     <div>
       
       {productDesc && productDesc.length > 0 ? (
-        <div className='w-[100%] border-4 border-gray-800 sm:px-20 sm:flex sm:justify-around sm:items-center'>         
+        <div className='w-[100%] border-4 border-gray-800 md:px-20 md:flex md:justify-around md:items-center'>         
           <div className='w-[100%] px-4 sm:w-[50%]'>
             <img 
               src={productDesc[0].productImage} 
@@ -40,28 +40,28 @@ const ProductDescription = () => {
             />
           </div> 
           <div className='w-[100%] px-4 sm:my-12 sm:w-[50%]'>            
-            <p>{productDesc[0].productName}</p>
-            <p className='w-[80%]'>{productDesc[0].productDescription}</p>
-            <p>Rs. {productDesc[0].productPrice}</p>
-            <div className='flex'>
-              <p>Features : </p>
-              <div className='px-2'>
+            <p className='text-xl text-gray-600 py-2'>{productDesc[0].productName}</p>
+            <p className='w-[80%] text-sm'>{productDesc[0].productDescription}</p>
+            <p className='text-3xl text-gray-800 py-2'>Rs. {productDesc[0].productPrice}</p>
+            <div className='flex text-sm text-gray-600 py-2'>              
+              <div>
+                <p>Features : </p>
                 {productDesc[0].productFeatures.map(feature => (
                       <ul>
-                        <li>{feature}</li>
+                        <li className='text-sm text-gray-800 py-2'>{feature}</li>
                       </ul>              
                     )
                 )}
               </div>              
             </div>
 
-            <div className='flex'>
-              <p>Colors : </p>
+            <div className='flex py-2 text-sm'>
+              <p className='text-gray-600'>Colors : </p>
               <div className='px-6'>
                 {productDesc[0].productColors.map(color => (
-                      <ul>
-                        <li>{color}</li>
-                      </ul>
+                      
+                      <span>{color} &nbsp;</span>  
+                      
                     )
                 )}
               </div>              
