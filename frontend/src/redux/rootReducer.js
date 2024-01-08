@@ -6,5 +6,5 @@ import { orderData } from './orderReducer'
 export default combineReducers({
     cartData: cartData,
     authData: authData,
-    orderData: orderData,
+    orderData: orderData,    
 })

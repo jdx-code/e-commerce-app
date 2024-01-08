@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { increaseQty, decreaseQty, removeAllQty } from '../redux/cartAction';
 import { proceedToPayment } from '../redux/orderAction';
 
 const Cart = () => {
-  
+
   const results = useSelector((state) => state.cartData);
 
   const loginData = useSelector ((state) => state.authData) 
@@ -48,7 +49,33 @@ const Cart = () => {
               <div className="min-w-0 flex-auto">
                 <p className="text-sm font-semibold leading-6 text-gray-900">{result.productName}</p>
                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">{result.productPrice}</p>
-                <p className="mt-1 text-xs leading-5 text-gray-500">Quantity: {result.quantity}</p>
+                <div className='flex'>
+                  <p className="mt-1 text-xs leading-5 text-gray-500">Quantity: {result.quantity}</p>
+                  <div>                   
+                    
+                    <button 
+                      className="ml-[0.85rem] bg-blue-400 hover:bg-blue-500 text-white font-bold py-[0.05rem] px-2 rounded-full text-sm"                      
+                      onClick={() => dispatch(increaseQty(result._id))}
+                    >  
+                      +  
+                    </button>
+                    <button 
+                      className="mx-[0.25rem] bg-red-400 hover:bg-pink-700 text-white font-bold py-[0.12rem] px-[0.60rem] rounded-full text-sm"
+                      onClick={() => dispatch(decreaseQty(result._id))}
+                    >  
+                      -
+                    </button>
+
+                    <button 
+                      className="mx-[0.25rem] bg-red-300 hover:bg-pink-700 text-white font-bold py-[0.12rem] px-[0.60rem] rounded-full text-sm"
+                      onClick={() => dispatch(removeAllQty(result._id))}
+                    >  
+                      Remove Item
+                    </button>
+
+                  </div>                  
+                </div>
+                
               </div>
             </div>
             <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
