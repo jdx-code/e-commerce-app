@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
 
@@ -31,14 +33,22 @@ const SignUp = () => {
       
               console.log(`Registered successfully with.. ${response.data.token}`)
 
-              navigate('/');    
-              
+              toast.success('Registered successfully! You can login now.', {
+                position: toast.POSITION.TOP_CENTER,
+              });
+
               setFormData({
                 name: '',
                 email: '',
                 username: '',
                 password: '',
               });
+
+              setTimeout(() => {
+                navigate('/');    
+              }, "2000");
+              
+              
             } else {              
               console.error(`Unexpected response format: ${response}`);
               toast.error('An unexpected error occurred.', {
@@ -166,7 +176,7 @@ const SignUp = () => {
 
         </div>
         </form>
-
+        <ToastContainer />
     </div>    
   )
 }

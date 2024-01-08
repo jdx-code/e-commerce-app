@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { emptyCart } from '../redux/cartAction';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Payment = () => {
 
   const loginData = useSelector ((state) => state.authData) 
 
   const user_id = loginData[0].user_id
+
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     paymentType: '',    
@@ -18,6 +24,8 @@ const Payment = () => {
   console.log(`Items Array: ${itemsArray}`);
   
   const cart = itemsArray.map(item => ({ productId: item._id, quantity: item.quantity }));
+
+  const dispatch = useDispatch()
   
   const handlePaymentTypeChange = (event) => {
     setFormData({
@@ -29,7 +37,7 @@ const Payment = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    const requestData = {
+  const requestData = {
       formData,
       cart,           
       user_id 
@@ -38,8 +46,15 @@ const Payment = () => {
     axios
     .patch('http://localhost:5000/api/orders/payments', requestData)
     .then((response) => {
-        if(response && response.data) {
+        if(response.status === 200) {
             console.log(`Payment successfull !! Order confirmed.`)
+            toast.success("Order confirmed! Thank you for your purchase.", {
+              position: toast.POSITION.TOP_RIGHT,
+            });       
+          dispatch(emptyCart()) 
+          setTimeout(() => {
+            navigate('/');    
+          }, "2000"); 
         }
     })
 
@@ -84,6 +99,9 @@ const Payment = () => {
           Complete payment
         </button>
       </form>
+
+      <ToastContainer />
+
     </div>
     
   )
