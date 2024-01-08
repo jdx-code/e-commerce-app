@@ -47,10 +47,14 @@ const Login = () => {
                 .then((res) => {
                   
                   if (res.status === 200) {                    
-                    navigate('/');
-                    toast('Logged in successfully!', {
+                    
+                    toast.success('Logged in successfully!', {
                       position: toast.POSITION.TOP_CENTER,
                     });
+                    setTimeout(() => {
+                      navigate('/');    
+                    }, "2000");
+
                   } else {                    
                     console.error('Server error:', res);
                   }
