@@ -84,6 +84,7 @@ const userLogin = async(userCreds, role, res) => {
         { expiresIn: "7 days" }
     )
         let result = {
+            user_id: user._id,
             username: user.username,
             role: user.role,
             email: user.email,
